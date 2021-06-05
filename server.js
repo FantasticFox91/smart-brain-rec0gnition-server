@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-const register = require("./Controlers/register");
-const signin = require("./Controlers/signin");
-const profile = require("./Controlers/profile");
-const image = require("./Controlers/image");
+const register = require("./controlers/register");
+const signin = require("./controlers/signin");
+const profile = require("./controlers/profile");
+const image = require("./controlers/image");
 
 
 const db = knex({
@@ -37,6 +37,6 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
-app.listen(process.env.PORT ||3001, ()=> {
-  console.log(`app is running on port ${process.env.PORT}');
+app.listen(process.env.PORT || 3000, () => {
+  console.log('app is running on port 3000');
 })
