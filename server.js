@@ -3,20 +3,21 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-const register = require("/Controlers/register");
-const signin = require("/Controlers/signin");
-const profile = require("/Controlers/profile");
-const image = require("/Controlers/image");
+const register = require("./controlers/register");
+const signin = require("./controlers/signin");
+const profile = require("./controlers/profile");
+const image = require("./controlers/image");
 
 
-const db= knex({
-        client: 'pg',
-        connection: {
-          host : '127.0.0.1', //localhost
-          user : 'postgres', //add your user name for the database here
-          password : '', //add your correct password in here
-          database : 'smartweb' //add your database name you created here
-        }
+const db = knex({
+  // Enter your own database information here based on what you created
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'postgres',
+    password : '15050904',
+    database : 'smart-brain'
+  }
 });
 
 
@@ -36,6 +37,6 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(3001, ()=> {
   console.log('app is running on port 3000');
 })
