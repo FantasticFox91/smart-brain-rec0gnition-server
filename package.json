@@ -21,8 +21,6 @@
     "nodemon": "^2.0.4"
   },
   "description": ""
-},
-"engines": {
-"node": "14.16.1"
 }
+
 
