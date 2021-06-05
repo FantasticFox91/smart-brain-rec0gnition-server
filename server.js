@@ -9,15 +9,14 @@ const profile = require("./controlers/profile");
 const image = require("./controlers/image");
 
 
-const db = knex({
-  // Enter your own database information here based on what you created
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : '15050904',
-    database : 'smart-brain'
-  }
+const db= knex({
+        client: 'pg',
+        connection: {
+          host : '127.0.0.1', //localhost
+          user : 'postgres', //add your user name for the database here
+          password : '', //add your correct password in here
+          database : 'smartweb' //add your database name you created here
+        }
 });
 
 
