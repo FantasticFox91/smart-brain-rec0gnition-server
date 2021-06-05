@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-const register = require("./controlers/register");
-const signin = require("./controlers/signin");
-const profile = require("./controlers/profile");
-const image = require("./controlers/image");
+const register = require("./controlers/register.js");
+const signin = require("./controlers/signin.js");
+const profile = require("./controlers/profile.js");
+const image = require("./controlers/image.js");
 
 
 const db = knex({
@@ -32,10 +32,10 @@ app.get('/', (req, res)=> {
 })
 
 app.post('./controlers/signin', signin.handleSignin(db, bcrypt))
-app.post('./controlers/registe', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
+app.post('./controlers/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
 app.get('./controlers/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
-app.put('./controlers//image', (req, res) => { image.handleImage(req, res, db)})
-app.post('./controlers//imageurl', (req, res) => { image.handleApiCall(req, res)})
+app.put('./controlers/image', (req, res) => { image.handleImage(req, res, db)})
+app.post('./controlers/imageurl', (req, res) => { image.handleApiCall(req, res)})
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`app is running on port ${process.env.PORT}`);
