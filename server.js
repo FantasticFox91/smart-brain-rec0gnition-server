@@ -9,7 +9,6 @@ const signin = require("./controlers/signin");
 const profile = require("./controlers/profile");
 const image = require("./controlers/image");
 
-
 const db = knex({
 client: 'pg',
    connection: {
@@ -20,23 +19,32 @@ client: 'pg',
    },
 });
 
-
-
 const app = express();
 
-app.use(cors())
 app.use(bodyParser.json());
+app.use(cors())
 
 app.get('/', (req, res)=> {
   res.send("This is working");
 })
 
-app.post('/signin', signin.handleSignin(db, bcrypt))
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
-app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
-app.put('/image', (req, res) => { image.handleImage(req, res, db)})
-app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
+app.post('/signin', signin.handleSignin(db, bcrypt));
 
-app.listen(3001, ()=> {
-  console.log('app is running on port 3000');
+app.post('/register', (req, res) => { 
+  register.handleRegister(req, res, db, bcrypt) 
+});
+
+app.get('/profile/:id', (req, res) => { 
+  profile.handleProfileGet(req, res, db);
+})
+
+app.put('/image', (req, res) => { 
+  image.handleImage(req, res, db);
+})
+app.post('/imageurl', (req, res) => { 
+  image.handleApiCall(req, res);
+})
+
+app.listen(process.env.PORT || 3001, ()=> {
+  console.log(`app is running on port ${process.env.PORT}`);
 })
