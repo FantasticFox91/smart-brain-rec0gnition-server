@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+
 const register = require("./controlers/register");
 const signin = require("./controlers/signin");
 const profile = require("./controlers/profile");
@@ -10,14 +11,13 @@ const image = require("./controlers/image");
 
 
 const db = knex({
-  // Enter your own database information here based on what you created
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : '15050904',
-    database : 'smart-brain'
-  }
+client: 'pg',
+   connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+         rejectUnauthorized: false,
+      },
+   },
 });
 
 
